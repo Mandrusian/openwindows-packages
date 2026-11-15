@@ -36,7 +36,7 @@ Executable=bin\example.exe
 bin\example.exe=<sha256>
 ```
 
-The `.opw` file is a signed Microsoft Cabinet archive containing this manifest and `payload\` files. The executables inside remain ordinary `.exe`/`.dll` files. Current `wpk` commands are `install <file.opw> [--system]`, `list`, `run <application-id>`, and `set-de <environment-id>`. Installs are per-user by default; `--system` requests a machine-wide install and requires an administrator token.
+The `.opw` file is a signed Microsoft Cabinet archive containing this manifest and `payload\` files. The executables inside remain ordinary `.exe`/`.dll` files. Current `wpk` commands are `install <file.opw> [--system]`, `list`, `run <application-id>`, `remove <package-id> [--system]`, and `set-de <environment-id>`. Installs are per-user by default; `--system` requests a machine-wide install and requires an administrator token. Removal targets only the registered package directory and refuses to remove the active/default desktop environment.
 
 The catalog index is currently empty. Package-ID downloads, uninstall, upgrades, and pinned project-publisher keys are not implemented yet. No package is listed until its source, license, AMD64 build, hash manifest, signature, and runtime behavior have been reviewed.
 
