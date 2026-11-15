@@ -16,11 +16,29 @@ ApiLevel=1
 Type=DesktopEnvironment
 Shell=bin\example-shell.exe
 
-[Files]
+[Hashes]
 bin\example-shell.exe=<sha256>
 ```
 
-`wpk install <package-id>` resolves an entry from `index.json`. `wpk install C:\path\package.opw` installs a downloaded package file. A normal install is per-user; `sudo wpk install ...` requests a machine-wide install.
+Native applications use `Type=Application` and an `Executable` entry instead:
+
+```ini
+[Package]
+Id=example-app
+Name=Example App
+Version=1.0.0
+Architecture=amd64
+ApiLevel=1
+Type=Application
+Executable=bin\example.exe
+
+[Hashes]
+bin\example.exe=<sha256>
+```
+
+The `.opw` file is a signed Microsoft Cabinet archive containing this manifest and `payload\` files. The executables inside remain ordinary `.exe`/`.dll` files. Current `wpk` commands are `install <file.opw> [--system]`, `list`, `run <application-id>`, and `set-de <environment-id>`. Installs are per-user by default; `--system` requests a machine-wide install and requires an administrator token.
+
+The catalog index is currently empty. Package-ID downloads, uninstall, upgrades, and pinned project-publisher keys are not implemented yet. No package is listed until its source, license, AMD64 build, hash manifest, signature, and runtime behavior have been reviewed.
 
 No package is listed until its source, license, AMD64 build, hash manifest, and runtime behavior have been reviewed.
 
