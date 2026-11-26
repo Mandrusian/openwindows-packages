@@ -4,7 +4,7 @@
   "type": "object",
   "required": ["schemaVersion", "packages"],
   "properties": {
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "type": "integer", "const": 1 },
     "packages": {
       "type": "array",
       "items": {
@@ -12,8 +12,8 @@
         "required": ["id", "version", "architecture", "apiLevel", "release", "sha256", "signature"],
         "properties": {
           "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
-          "version": { "type": "string", "minLength": 1 },
-          "architecture": { "enum": ["amd64", "x86"] },
+          "version": { "type": "string", "minLength": 1, "pattern": "^\\S+$" },
+          "architecture": { "type": "string", "enum": ["amd64", "x86"] },
           "apiLevel": { "type": "integer", "minimum": 1 },
           "release": { "type": "string", "format": "uri" },
           "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
